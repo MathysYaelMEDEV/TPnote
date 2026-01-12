@@ -42,7 +42,7 @@ public class JeuPendu {
      * 
      * @return booleen indiquant si le mot a été trouvé
      */
-    private boolean wordFound(){
+    public boolean wordFound(){
         for(String s : this.currentWord){
             if (s == null){
                 return false;
