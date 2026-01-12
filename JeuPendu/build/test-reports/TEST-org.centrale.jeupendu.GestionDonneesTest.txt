@@ -1,0 +1,17 @@
+Testsuite: org.centrale.jeupendu.GestionDonneesTest
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0,135 sec
+
+Testcase: initializationError took 0,002 sec
+	Caused an ERROR
+Invalid test class 'org.centrale.jeupendu.GestionDonneesTest':
+  1. The class org.centrale.jeupendu.GestionDonneesTest is not public.
+  2. Test class should have exactly one public constructor
+  3. No runnable methods
+org.junit.runners.model.InvalidTestClassError: Invalid test class 'org.centrale.jeupendu.GestionDonneesTest':
+  1. The class org.centrale.jeupendu.GestionDonneesTest is not public.
+  2. Test class should have exactly one public constructor
+  3. No runnable methods
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+
