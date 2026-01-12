@@ -4,6 +4,7 @@
  */
 package org.centrale.jeupendu;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -27,36 +28,36 @@ public class Interface {
     /**
      * Initialise le mot secret selon le mode de jeu souhaité
      * @return le mot secret tiré aléatoirement ou rentré par le joueur selon le mode de jeu choisi
+     * @throws java.io.IOException
      */
-    public static String initMotSecret(){
+    public static String initMotSecret() throws IOException{
         String mot = "";
-        Scanner scanner = new Scanner(System.in);
-        
-        logger.info("Sélectionnez le mode de jeu");
-        logger.info("1 : Solo");
-        logger.info("2 : Deux jouers");
-
-        while(true){
-            try{
-                
-                int mode = scanner.nextInt();
-                scanner.nextLine();
-
-                switch(mode){
-                    case 1 -> mot = GestionDonnees.motAlea();
-                    case 2 -> mot = demandeMotSecret();
-                    default -> {
-                        logger.info("Entrez 1 ou 2");
-                        continue;
+        try (Scanner scanner = new Scanner(System.in)) {
+            logger.info("Sélectionnez le mode de jeu");
+            logger.info("1 : Solo");
+            logger.info("2 : Deux jouers");
+            
+            while(true){
+                try{
+                    
+                    int mode = scanner.nextInt();
+                    scanner.nextLine();
+                    
+                    switch(mode){
+                        case 1 -> mot = GestionDonnees.motAlea();
+                        case 2 -> mot = demandeMotSecret();
+                        default -> {
+                            logger.info("Entrez 1 ou 2");
+                            continue;
+                        }
                     }
+                    break;
+                } catch (InputMismatchException e) {
+                    logger.info("Erreur : Saisissez un nombre valide (1 ou 2).");
+                    scanner.nextLine();
                 }
-                break;
-            } catch (InputMismatchException e) {
-                logger.info("Erreur : Saisissez un nombre valide (1 ou 2).");
-                scanner.nextLine();
             }
         }
-        scanner.close();
         
         return mot;
     }
