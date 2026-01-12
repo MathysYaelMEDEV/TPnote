@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package org.centrale.jeupendu;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -45,7 +43,7 @@ public class Jeu {
             partie_finie = jeu.isOver();
             int etat = jeu.getState();
             if (etat > 0){
-                Interface.afficheEtat(etat);
+                Interface.afficheEtat(etat, jeu.getSecretWord());
             }
         }
 

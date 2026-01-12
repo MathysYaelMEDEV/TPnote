@@ -145,7 +145,6 @@ public class Interface {
      * @param listeLettres 
      */
     public static void afficheListeLettre(List<String> listeLettres){
-        Collections.sort(listeLettres);
         logger.info(listeLettres.toString());
     }
     
@@ -175,6 +174,9 @@ public class Interface {
         return lettre != null && lettre.matches("[a-z]");
     }
     
+    /**
+     * Affiche le nom du jeu
+     */
     public static void afficherIntro() {
         String titre = "Jeu du Pendu";
         String auteurs = "Auteurs : Yaël & Mathys";
@@ -187,4 +189,32 @@ public class Interface {
         logger.info(ligne);
     }
     
+    /**
+     * Affiche le nombre d'erreur restantes
+     * 
+     * @param maxError
+     * @param error 
+     */
+    public static void afficheErreurRestantes(int maxError, int error){
+        int erreurRestante = maxError - error;
+        logger.info("Erreur restantes : " + erreurRestante);
+    }
+    
+    /**
+     * Affiche l'état du jeu
+     * 
+     * @param etat
+     * @param motSecret 
+     */
+    public static void afficheEtat(int etat, String motSecret){
+        switch (etat) {
+            case 1 -> // Victoire
+                logger.info("Félicitations ! Vous avez trouvé le mot : " + motSecret);
+            case 2 -> // Défaite
+                logger.info("Défaite ! Trop d'erreurs. Le mot était : " + motSecret);
+            default -> // Partie en cours
+                logger.info("Le jeu est encore en cours...");
+        }
+      
+    }
 }
