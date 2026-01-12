@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class JeuPendu {
     
-    private int mode;
     private int maxError;
     private int errors;
     private String secretWord;
@@ -20,8 +19,7 @@ public class JeuPendu {
     private List<String> letters;
     private int state;// 0 = en cours, 1 = victoire du joueur qui cherche, 2 = défaite
     
-    public JeuPendu(int mode, int maxError, String secretWord) {
-        this.mode = mode;
+    public JeuPendu(int maxError, String secretWord) {
         this.maxError = maxError;
         this.errors = 0;
         this.secretWord = secretWord;
@@ -70,5 +68,55 @@ public class JeuPendu {
             letters.add(l);
         } 
     }
+
+    public int getMaxError() {
+        return maxError;
+    }
+
+    public void setMaxError(int maxError) {
+        this.maxError = maxError;
+    }
+
+    public int getErrors() {
+        return errors;
+    }
+
+    public void setErrors(int errors) {
+        this.errors = errors;
+    }
+
+    public String getSecretWord() {
+        return secretWord;
+    }
+
+    public void setSecretWord(String secretWord) {
+        this.secretWord = secretWord;
+    }
+
+    public List<String> getCurrentWord() {
+        return currentWord;
+    }
+
+    public void setCurrentWord(List<String> currentWord) {
+        this.currentWord = currentWord;
+    }
+
+    public List<String> getLetters() {
+        return letters;
+    }
+
+    public void setLetters(List<String> letters) {
+        this.letters = letters;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+    
+    
     
 }
