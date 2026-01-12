@@ -4,6 +4,7 @@
  */
 package org.centrale.jeupendu;
 
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -25,7 +26,7 @@ public class Interface {
     
     /**
      * Initialise le mot secret selon le mode de jeu souhaité
-     * @return
+     * @return le mot secret tiré aléatoirement ou rentré par le joueur selon le mode de jeu choisi
      */
     public static String initMotSecret(){
         String mot = "";
@@ -86,7 +87,7 @@ public class Interface {
         String mot;
         Scanner scanner = new Scanner(System.in);
         
-        logger.info("Entrez votre mot secret, n'utilisez que des lettres (a-z)");
+        logger.info("Entrez votre mot secret, n'utilisez que les 26 lettres minuscules de l'alphabet");
         
         while(true){
             mot = scanner.nextLine().trim();
@@ -97,7 +98,7 @@ public class Interface {
                 }
                 return mot;
             } else {
-                logger.info("Erreur : Le mot ne doit contenir que des lettres (a-z). Réessayez.");
+                logger.info("Erreur : Le mot ne doit contenir que des lettres minuscules (a-z). Réessayez.");
             }
         }
     }
@@ -107,11 +108,45 @@ public class Interface {
      * @param mot
      * @return 
      */
-    public static boolean contientSeulementLettres(String mot) {
+    private static boolean contientSeulementLettres(String mot) {
         // Vérifie que le mot n'est pas null et ne contient que des lettres (a-z ou A-Z)
         return mot != null && mot.matches("[a-z]+");
     }
-
     
+    /**
+     * Affiche la liste des lettres déjà données par le joueur cherchant le mot
+     * 
+     * @param listeLettres 
+     */
+    public static void afficheListeLettre(List<String> listeLettres){
+        Collections.sort(listeLettres);
+        logger.info(listeLettres.toString());
+    }
+    
+    public static String demandeLettre(){
+        String lettre;
+        Scanner scanner = new Scanner(System.in);
+        
+        logger.info("Entrez une lettre à tester, n'utilisez que les 26 lettres minuscules de l'alphabet");
+        
+        while(true){
+            lettre = scanner.nextLine().trim();
+            if (estLettreValide(lettre)) {
+                return lettre;
+            } else {
+                logger.info("Erreur : La lettre doit être une lettre minuscule (a-z). Réessayez.");
+            }
+        }
+    }
+    
+    /**
+     * Test si une lettre fait partie des 26 lettres minuscules de l'alphabet
+     * @param lettre
+     * @return 
+     */
+    private static boolean estLettreValide(String lettre) {
+        // Vérifie que le mot n'est pas null et ne contient que des lettres (a-z ou A-Z)
+        return lettre != null && lettre.matches("[a-z]");
+    }  
     
 }
