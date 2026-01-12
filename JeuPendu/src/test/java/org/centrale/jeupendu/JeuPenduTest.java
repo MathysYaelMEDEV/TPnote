@@ -4,7 +4,6 @@
  */
 package org.centrale.jeupendu;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,22 +17,26 @@ public class JeuPenduTest {
     
     private JeuPendu jeu;
     
+    /**
+     * Réinitialise le jeu avant tout les tests
+     */
     @BeforeEach
     public void setUp() {
         jeu = new JeuPendu(3, "test");
     }
+ 
     
-    @AfterEach
-    public void tearDown() {
-    }
-    
-    
-
+    /**
+     * Test si le mot n'est pas trouvé dès le départ
+     */
     @Test
     void wordNotFoundAtStart() {
         assertFalse(jeu.wordFound());
     }
     
+    /**
+     * Test si le mot est bien trouvé quand le mot courant est égal à ce dernier
+     */
     @Test
     void wordFoundWhenAllLettersPresent() {
         jeu.setCurrentWord(List.of("t", "e", "s", "t"));
@@ -42,7 +45,9 @@ public class JeuPenduTest {
     }
     
     
-    
+    /**
+     * Teste si une lettre correcte change le mot courant
+     */
     @Test
     void correctLetterRevealsPositions() {
         jeu.tryLetter("t");
@@ -51,12 +56,18 @@ public class JeuPenduTest {
         assertEquals("t", jeu.getCurrentWord().get(3));
     }
     
+    /**
+     * Teste qu'une lettre incorrecte augmente le nombre d'erreur
+     */
     @Test
     void wrongLetterIncreasesErrors() {
         jeu.tryLetter("x");
         assertEquals(1, jeu.getErrors());
     }
     
+    /**
+     * Teste si une lettre essayée est bien stockée, qu'elle soit valide ou non
+     */
     @Test
     void letterIsStored() {
         jeu.tryLetter("e");
@@ -66,13 +77,18 @@ public class JeuPenduTest {
     }
     
     
-    
+    /**
+     * Teste que le jeu n'est pas finie au départ
+     */
     @Test
     void gameNotOverAtStart() {
         assertFalse(jeu.isOver());
         assertEquals(0, jeu.getState());
     }
-
+    
+    /**
+     * Teste si le jeu est bien finie et une défaite quand il y a trop d'erreur
+     */
     @Test
     void gameLostWhenMaxErrorsReached() {
         jeu.tryLetter("x");
@@ -83,6 +99,9 @@ public class JeuPenduTest {
         assertEquals(2, jeu.getState()); // défaite
     }
     
+    /**
+     * Teste si le jeu est bien finie et une victoire quand le mot est trouvé
+     */
     @Test
     void gameWonWhenWordIsFound() {
         jeu.tryLetter("t");
