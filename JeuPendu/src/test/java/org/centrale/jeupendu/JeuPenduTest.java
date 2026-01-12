@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,35 +19,78 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class JeuPenduTest {
     
-    public JeuPenduTest() {
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
+    private JeuPendu jeu;
     
     @BeforeEach
     public void setUp() {
+        jeu = new JeuPendu(3, "test");
     }
     
     @AfterEach
     public void tearDown() {
     }
+    
+    
 
-    /**
-     * Test of main method, of class HelloWorld.
-     */
     @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        JeuPendu.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    void wordNotFoundAtStart() {
+        assertFalse(jeu.wordFound());
     }
     
+    @Test
+    void wordFoundWhenAllLettersPresent() {
+        jeu.setCurrentWord(List.of("t", "e", "s", "t"));
+            
+        assertTrue(jeu.wordFound());
+    }
+    
+    
+    
+    @Test
+    void correctLetterRevealsPositions() {
+        jeu.tryLetter("t");
+
+        assertEquals("t", jeu.getCurrentWord().get(0));
+        assertEquals("t", jeu.getCurrentWord().get(3));
+    }
+    
+    @Test
+    void wrongLetterIncreasesErrors() {
+        jeu.tryLetter("x");
+        assertEquals(1, jeu.getErrors());
+    }
+    
+    @Test
+    void letterIsStored() {
+        jeu.tryLetter("e");
+        assertTrue(jeu.getLetters().contains("e"));
+    }
+    
+    
+    
+    @Test
+    void gameNotOverAtStart() {
+        assertFalse(jeu.isOver());
+        assertEquals(0, jeu.getState());
+    }
+
+    @Test
+    void gameLostWhenMaxErrorsReached() {
+        jeu.tryLetter("x");
+        jeu.tryLetter("y");
+        jeu.tryLetter("z");
+
+        assertTrue(jeu.isOver());
+        assertEquals(2, jeu.getState()); // défaite
+    }
+    
+    @Test
+    void gameWonWhenWordIsFound() {
+        jeu.tryLetter("t");
+        jeu.tryLetter("e");
+        jeu.tryLetter("s");
+
+        assertTrue(jeu.isOver());
+        assertEquals(1, jeu.getState()); // victoire
+    }    
 }
