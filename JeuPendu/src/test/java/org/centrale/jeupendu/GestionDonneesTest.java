@@ -15,10 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author dytri
  */
-public class GestionDonneesTest {
-    
-    public GestionDonneesTest() {
-    }
+class GestionDonneesTest {
 
     /**
      * Test of motAlea method, of class GestionDonnees.

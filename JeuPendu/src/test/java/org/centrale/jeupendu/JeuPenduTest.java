@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author dytri
  */
-public class JeuPenduTest {
+class JeuPenduTest {
     
     private JeuPendu jeu;
     
@@ -21,7 +21,7 @@ public class JeuPenduTest {
      * Réinitialise le jeu avant tout les tests
      */
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         jeu = new JeuPendu(3, "test");
     }
  

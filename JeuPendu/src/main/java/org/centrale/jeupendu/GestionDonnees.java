@@ -18,7 +18,11 @@ import java.util.Random;
  */
 public class GestionDonnees {
     
-    private static Random random = new Random();
+    private static final Random random = new Random();
+    
+    private GestionDonnees() {
+        throw new IllegalStateException("Utility class");
+    }
     
      /**
      * Lit un fichier texte et retourne la liste de mots (1 mot par ligne)
@@ -35,8 +39,6 @@ public class GestionDonnees {
         List<String> mots = Files.readAllLines(path);
         int index = random.nextInt(mots.size());
         
-        String mot = mots.get(index);
-        
-        return mot;
+        return mots.get(index);
     }
 }
