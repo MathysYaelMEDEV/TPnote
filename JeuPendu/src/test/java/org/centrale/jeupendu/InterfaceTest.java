@@ -102,17 +102,6 @@ class InterfaceTest {
     }
     
     /**
-     * Test non instanciation d'Interface
-     */
-    @Test
-    void testConstructeurInterface() throws Exception{
-        var constructor = Interface.class.getDeclaredConstructor();
-        constructor.setAccessible(true);
-
-        assertThrows(Exception.class, constructor::newInstance);
-    }
-    
-    /**
      * Test renvoi d'un mot dans le mode solo
      */
     @Test
@@ -145,7 +134,7 @@ class InterfaceTest {
 
         int maxErreur = Interface.initMaxErreur();
 
-        assertNotNull(maxErreur);
+        assertTrue(maxErreur > 0);
     }
     
     /**

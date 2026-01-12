@@ -142,7 +142,9 @@ public class Interface {
      * @param listeLettres 
      */
     public static void afficheListeLettre(List<String> listeLettres){
-        logger.info(listeLettres.toString());
+        if(listeLettres != null){
+            logger.info(listeLettres.toString());
+        }
     }
     
     public static String demandeLettre(){
@@ -194,7 +196,7 @@ public class Interface {
      */
     public static void afficheErreurRestantes(int maxError, int error){
         int erreurRestante = maxError - error;
-        logger.info("Erreur restantes : " + erreurRestante);
+        logger.info("Erreurs restantes : {}", erreurRestante);
     }
     
     /**
@@ -206,9 +208,9 @@ public class Interface {
     public static void afficheEtat(int etat, String motSecret){
         switch (etat) {
             case 1 -> // Victoire
-                logger.info("Félicitations ! Vous avez trouvé le mot : " + motSecret);
+                logger.info("Félicitations ! Vous avez trouvé le mot : {}", motSecret);
             case 2 -> // Défaite
-                logger.info("Défaite ! Trop d'erreurs. Le mot était : " + motSecret);
+                logger.info("Défaite ! Trop d'erreurs. Le mot était : {}", motSecret);
             default -> // Partie en cours
                 logger.info("Le jeu est encore en cours...");
         }

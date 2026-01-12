@@ -4,8 +4,6 @@
  */
 package org.centrale.jeupendu;
 
-import java.io.IOException;
-
 /**
  *
  * @author dytri
