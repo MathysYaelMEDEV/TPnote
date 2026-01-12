@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package org.centrale.helloworld;
+package org.centrale.jeupendu;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -15,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author dytri
  */
-public class HelloWorldTest {
+public class JeuPenduTest {
     
-    public HelloWorldTest() {
+    public JeuPenduTest() {
     }
     
     @BeforeAll
@@ -43,7 +43,7 @@ public class HelloWorldTest {
     public void testMain() {
         System.out.println("main");
         String[] args = null;
-        HelloWorld.main(args);
+        JeuPendu.main(args);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
