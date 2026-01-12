@@ -30,8 +30,6 @@ public class GestionDonnees {
         String cheminFichier = "src/main/data/dico.txt";
         Path path = Path.of(cheminFichier);
         
-        
-
         List<String> mots = Files.readAllLines(path);
         int index = random.nextInt(mots.size());
         

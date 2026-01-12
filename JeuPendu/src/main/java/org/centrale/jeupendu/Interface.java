@@ -63,6 +63,31 @@ public class Interface {
     }
     
     /**
+     * Initialise le nombre d'erreur maximum
+     * @return nombre d'erreur maximum
+     */
+    public static int initMaxErreur(){
+        int maxErreur;
+        try (Scanner scanner = new Scanner(System.in)) {
+            logger.info("Indiquez le nombre d'erreur maximum (conseillé : 6 ou 7) :");
+            
+            while(true){
+                try{
+                    
+                    maxErreur = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                } catch (InputMismatchException e) {
+                    logger.info("Erreur : Saisissez un nombre valide.");
+                    scanner.nextLine();
+                }
+            }
+        }
+        
+        return maxErreur;
+    }
+    
+    /**
      * Affiche un mot dans la console
      * 
      * @param mot sous forme de liste de String
@@ -148,6 +173,18 @@ public class Interface {
     private static boolean estLettreValide(String lettre) {
         // Vérifie que le mot n'est pas null et ne contient que des lettres (a-z ou A-Z)
         return lettre != null && lettre.matches("[a-z]");
-    }  
+    }
+    
+    public static void afficherIntro() {
+        String titre = "Jeu du Pendu";
+        String auteurs = "Auteurs : Yaël & Mathys";
+
+        String ligne = "*".repeat(Math.max(titre.length(), auteurs.length()) + 4);
+
+        logger.info(ligne);
+        logger.info("* {} *", titre);
+        logger.info("* {} *", auteurs);
+        logger.info(ligne);
+    }
     
 }
