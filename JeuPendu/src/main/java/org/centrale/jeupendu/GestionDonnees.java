@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.SecureRandom;
 import java.util.List;
+import static org.centrale.jeupendu.Interface.initMotSecret;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +22,7 @@ public class GestionDonnees {
     
     private static final SecureRandom random = new SecureRandom();
     
-    private static final Logger logger = LoggerFactory.getLogger(Interface.class);
+    private static final Logger logger = LoggerFactory.getLogger(GestionDonnees.class);
     
     private GestionDonnees() {
         throw new IllegalStateException("Utility class");
@@ -31,9 +32,8 @@ public class GestionDonnees {
      * Lit un fichier texte et retourne la liste de mots (1 mot par ligne)
      *
      * @return StringList contenant tous les mots
-     * @throws IOException si le fichier n'existe pas ou ne peut pas être lu
      */
-    public static String motAlea() throws IOException {
+    public static String motAlea() {
         String cheminFichier = "src/main/data/dico.txt";
 
         try{
@@ -44,8 +44,9 @@ public class GestionDonnees {
             
             return mots.get(index);
         } catch (IOException e){
-            logger.info("Vérifiez le dictionnaire ou jouer à deux joueurs");
+            logger.info("Vérifiez le dictionnaire ou jouez à deux joueurs");
+            initMotSecret();
+            return null;
         }
-        return null;
     }
 }

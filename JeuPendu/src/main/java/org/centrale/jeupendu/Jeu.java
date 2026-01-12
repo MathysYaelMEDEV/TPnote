@@ -4,6 +4,8 @@
  */
 package org.centrale.jeupendu;
 
+import java.io.IOException;
+
 /**
  *
  * @author dytri
@@ -15,17 +17,12 @@ public class Jeu {
         Interface.afficherIntro();
         
         //choisi parametre de la partie
-        String motSecret = "";
-        int maxErreur = 6;
-        while(true){
-            try{
-                motSecret = Interface.initMotSecret();
-                maxErreur = Interface.initMaxErreur();
-                break;
-            }catch (Exception e){
-                continue;
-            }
-        }
+        String motSecret;
+        int maxErreur;
+
+        motSecret = Interface.initMotSecret();
+        maxErreur = Interface.initMaxErreur();
+
         
         JeuPendu jeu = new JeuPendu(maxErreur, motSecret);
         

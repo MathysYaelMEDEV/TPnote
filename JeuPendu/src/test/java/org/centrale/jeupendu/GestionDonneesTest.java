@@ -21,7 +21,7 @@ class GestionDonneesTest {
      * Test of motAlea method, of class GestionDonnees.
      */
     @Test
-    void testMotAlea() {
+    void testMotAleaDicoTrouve() {
         try {
             // Lire le fichier pour comparer
             String cheminFichier = "src/main/data/dico.txt";
@@ -39,5 +39,16 @@ class GestionDonneesTest {
         } catch (IOException e) {
             fail("Impossible de lire le fichier du dictionnaire : " + e.getMessage());
         }
+    }
+    
+    /**
+     * Test non instanciation de GestionDonnees
+     */
+    @Test
+    void testConstructeurGestionDonnees() throws Exception{
+        var constructor = Interface.class.getDeclaredConstructor();
+        constructor.setAccessible(true);
+
+        assertThrows(Exception.class, constructor::newInstance);
     }
 }
