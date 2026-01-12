@@ -24,7 +24,6 @@ class GestionDonneesTest {
     /**
      * Test of motAlea method, of class GestionDonnees.
      */
-    @Disabled("Test désactivé temporairement")
     @Test
     void testMotAleaDicoTrouve() {
         try {
@@ -49,7 +48,6 @@ class GestionDonneesTest {
     /**
      * Test non instanciation de GestionDonnees
      */
-    @Disabled("Test désactivé temporairement")
     @Test
     void testConstructeurGestionDonnees() throws Exception{
         var constructor = Interface.class.getDeclaredConstructor();
