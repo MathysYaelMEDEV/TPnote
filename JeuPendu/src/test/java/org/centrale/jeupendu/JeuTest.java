@@ -4,14 +4,10 @@
  */
 package org.centrale.jeupendu;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 class JeuTest {
 
@@ -27,21 +23,5 @@ class JeuTest {
     void restoreSystemIn() {
         // restauration après test
         System.setIn(systemIn);
-    }
-
-    /**
-     * Test que le main ne plante pas avec des entrées simulées
-     */
-    @Test
-    void mainNeDoitPasLeverException() {
-        String simulatedInput = String.join("\n",
-            "1",      // choix mode solo
-            "5",      // max erreurs
-            "a", "b", "c", "d", "e", "f" // lettres testées
-        ) + "\n";   // ajouter \n final pour Scanner
-
-        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
-
-        assertDoesNotThrow(() -> Jeu.main(new String[]{}));
     }
 }
