@@ -4,8 +4,6 @@
  */
 package org.centrale.jeupendu;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -28,9 +26,8 @@ public class Interface {
     /**
      * Initialise le mot secret selon le mode de jeu souhaité
      * @return le mot secret tiré aléatoirement ou rentré par le joueur selon le mode de jeu choisi
-     * @throws java.io.IOException
      */
-    public static String initMotSecret() throws IOException{
+    public static String initMotSecret(){
         String mot = "";
         try (Scanner scanner = new Scanner(System.in)) {
             logger.info("Sélectionnez le mode de jeu");

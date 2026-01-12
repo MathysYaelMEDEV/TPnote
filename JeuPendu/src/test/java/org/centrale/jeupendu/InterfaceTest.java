@@ -7,6 +7,7 @@ package org.centrale.jeupendu;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,5 +99,72 @@ class InterfaceTest {
         lettres.add("m");
 
         assertDoesNotThrow(() -> Interface.afficheListeLettre(lettres));
+    }
+    
+    /**
+     * Test non instanciation d'Interface
+     */
+    @Test
+    void testConstructeurInterface() throws Exception{
+        var constructor = Interface.class.getDeclaredConstructor();
+        constructor.setAccessible(true);
+
+        assertThrows(Exception.class, constructor::newInstance);
+    }
+    
+    /**
+     * Test renvoi d'un mot dans le mode solo
+     */
+    @Test
+    void initMotSecretModeSolo() throws IOException {
+        System.setIn(new ByteArrayInputStream("1\n".getBytes()));
+
+        String mot = Interface.initMotSecret();
+
+        assertNotNull(mot);
+    }
+    
+    /**
+     * Test renvoi du mot passé en argument
+     */
+    @Test
+    void initMotSecretModeDeuxJoueurs() throws IOException {
+        System.setIn(new ByteArrayInputStream("2\npendu\n".getBytes()));
+
+        String mot = Interface.initMotSecret();
+
+        assertEquals("pendu", mot);
+    }
+    
+    /**
+     * Test entrée invalide puis valide
+     */
+    @Test
+    void initMotSecretEntreeInvalidePuisValide() throws IOException {
+        System.setIn(new ByteArrayInputStream("abc\n1\n".getBytes()));
+
+        String mot = Interface.initMotSecret();
+
+        assertNotNull(mot);
+    }
+    
+    /**
+     * Test entrée invalide puis valide
+     */
+    @Test
+    void initMaxErreurEntreeInvalidePuisValide() throws IOException {
+        System.setIn(new ByteArrayInputStream("abc\n6\n".getBytes()));
+
+        int maxErreur = Interface.initMaxErreur();
+
+        assertNotNull(maxErreur);
+    }
+    
+    /**
+     * Test methode afficherIntro ne lève pas exception
+     */
+    @Test
+    void afficherIntroNeDoitPasLeverException() {
+        assertDoesNotThrow(() -> Interface.afficherIntro());
     }
 }
