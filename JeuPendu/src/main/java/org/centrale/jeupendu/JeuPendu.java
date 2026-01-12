@@ -68,8 +68,9 @@ public class JeuPendu {
             
         if(!found){
             errors++;
-            letters.add(l);
         } 
+        
+        letters.add(l);
     }
 
     public int getMaxError() {

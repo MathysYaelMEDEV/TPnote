@@ -63,7 +63,9 @@ public class JeuPenduTest {
     @Test
     void letterIsStored() {
         jeu.tryLetter("e");
+        jeu.tryLetter("x");
         assertTrue(jeu.getLetters().contains("e"));
+        assertTrue(jeu.getLetters().contains("x"));
     }
     
     
