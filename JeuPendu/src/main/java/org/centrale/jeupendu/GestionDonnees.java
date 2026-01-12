@@ -35,12 +35,13 @@ public class GestionDonnees {
      */
     public static String motAlea() throws IOException {
         String cheminFichier = "src/main/data/dico.txt";
+
         try{
             Path path = Path.of(cheminFichier);
 
             List<String> mots = Files.readAllLines(path);
             int index = random.nextInt(mots.size());
-        
+            
             return mots.get(index);
         } catch (IOException e){
             logger.info("Vérifiez le dictionnaire ou jouer à deux joueurs");

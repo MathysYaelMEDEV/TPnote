@@ -63,6 +63,31 @@ public class Interface {
     }
     
     /**
+     * Initialise le nombre d'erreur maximum
+     * @return nombre d'erreur maximum
+     */
+    public static int initMaxErreur(){
+        int maxErreur;
+        try (Scanner scanner = new Scanner(System.in)) {
+            logger.info("Indiquez le nombre d'erreur maximum (conseillé : 6 ou 7) :");
+            
+            while(true){
+                try{
+                    
+                    maxErreur = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                } catch (InputMismatchException e) {
+                    logger.info("Erreur : Saisissez un nombre valide.");
+                    scanner.nextLine();
+                }
+            }
+        }
+        
+        return maxErreur;
+    }
+    
+    /**
      * Affiche un mot dans la console
      * 
      * @param mot sous forme de liste de String
@@ -120,10 +145,7 @@ public class Interface {
      * @param listeLettres 
      */
     public static void afficheListeLettre(List<String> listeLettres){
-        if(listeLettres != null){
-            Collections.sort(listeLettres);
-            logger.info(listeLettres.toString());
-        }
+        logger.info(listeLettres.toString());
     }
     
     public static String demandeLettre(){
@@ -150,6 +172,49 @@ public class Interface {
     private static boolean estLettreValide(String lettre) {
         // Vérifie que le mot n'est pas null et ne contient que des lettres (a-z ou A-Z)
         return lettre != null && lettre.matches("[a-z]");
-    }  
+    }
     
+    /**
+     * Affiche le nom du jeu
+     */
+    public static void afficherIntro() {
+        String titre = "Jeu du Pendu";
+        String auteurs = "Auteurs : Yaël & Mathys";
+
+        String ligne = "*".repeat(Math.max(titre.length(), auteurs.length()) + 4);
+
+        logger.info(ligne);
+        logger.info("* {} *", titre);
+        logger.info("* {} *", auteurs);
+        logger.info(ligne);
+    }
+    
+    /**
+     * Affiche le nombre d'erreur restantes
+     * 
+     * @param maxError
+     * @param error 
+     */
+    public static void afficheErreurRestantes(int maxError, int error){
+        int erreurRestante = maxError - error;
+        logger.info("Erreur restantes : " + erreurRestante);
+    }
+    
+    /**
+     * Affiche l'état du jeu
+     * 
+     * @param etat
+     * @param motSecret 
+     */
+    public static void afficheEtat(int etat, String motSecret){
+        switch (etat) {
+            case 1 -> // Victoire
+                logger.info("Félicitations ! Vous avez trouvé le mot : " + motSecret);
+            case 2 -> // Défaite
+                logger.info("Défaite ! Trop d'erreurs. Le mot était : " + motSecret);
+            default -> // Partie en cours
+                logger.info("Le jeu est encore en cours...");
+        }
+      
+    }
 }
