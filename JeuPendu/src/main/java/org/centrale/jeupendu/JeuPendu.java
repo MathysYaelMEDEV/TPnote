@@ -24,13 +24,16 @@ public class JeuPendu {
         this.errors = 0;
         this.secretWord = secretWord;
         this.currentWord = new ArrayList<>(secretWord.length());
+        for (int i = 0; i < secretWord.length(); i++) {
+            this.currentWord.add(null);
+        }
         this.letters = new ArrayList<>();
         this.state = 0;
     }
     
     public boolean wordFound(){
         for(String s : this.currentWord){
-            if (s == null || "".equals(s)){
+            if (s == null){
                 return false;
             }
         }
