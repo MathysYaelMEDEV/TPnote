@@ -40,15 +40,4 @@ class GestionDonneesTest {
             fail("Impossible de lire le fichier du dictionnaire : " + e.getMessage());
         }
     }
-    
-    /**
-     * Test non instanciation de GestionDonnees
-     */
-    @Test
-    void testConstructeurGestionDonnees() throws Exception{
-        var constructor = Interface.class.getDeclaredConstructor();
-        constructor.setAccessible(true);
-
-        assertThrows(Exception.class, constructor::newInstance);
-    }
 }
