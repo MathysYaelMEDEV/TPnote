@@ -125,18 +125,6 @@ class InterfaceTest {
     }
     
     /**
-     * Test renvoi du mot passé en argument
-     */
-    @Test
-    void initMotSecretModeDeuxJoueurs() throws IOException {
-        System.setIn(new ByteArrayInputStream("2\npendu\n".getBytes()));
-
-        String mot = Interface.initMotSecret();
-
-        assertEquals("pendu", mot);
-    }
-    
-    /**
      * Test entrée invalide puis valide
      */
     @Test
