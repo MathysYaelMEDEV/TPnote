@@ -34,9 +34,12 @@ class JeuTest {
      */
     @Test
     void mainNeDoitPasLeverException() {
-        // Simule les entrées utilisateur pour initMotSecret et initMaxErreur
-        // Exemple : choix mode solo (1), max erreur = 5, et lettres 'a', 'b', 'c', ...
-        String simulatedInput = "1\n5\na\nb\nc\nd\ne\nf\n";
+        String simulatedInput = String.join("\n",
+            "1",      // choix mode solo
+            "5",      // max erreurs
+            "a", "b", "c", "d", "e", "f" // lettres testées
+        ) + "\n";   // ajouter \n final pour Scanner
+
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
         assertDoesNotThrow(() -> Jeu.main(new String[]{}));
