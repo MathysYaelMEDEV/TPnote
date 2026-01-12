@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JeuPendu" default="all" basedir="."> 
+    <description>Jeu du pendu</description>
+    
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="test.dir" value="test"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="jar.dir" value="${build.dir}/jar"/>
+    <property name="jar.name" value="JeuPendu.jar"/>
+    <property name="javadoc.dir" value="${build.dir}/javadoc"/>
+    <property name="test.report.dir" value="${build.dir}/test-reports"/>
+    <property name="lib.dir" value="lib"/>
+    
+    <!-- Nettoyage -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+    
+    <!-- Création des dossiers -->
+    <target name="init">
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${jar.dir}"/>
+        <mkdir dir="${test.report.dir}"/>
+    </target>
+    
+    <!-- Compilation du code source -->
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}"
+               destdir="${classes.dir}"
+               includeantruntime="false"
+               debug="true">
+            <classpath>
+                <fileset dir="${lib.dir}" includes="*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+    
+    <!-- Compilation des tests JUnit -->
+    <target name="compile-tests" depends="compile">
+        <javac srcdir="${test.dir}"
+               destdir="${classes.dir}"
+               includeantruntime="false"
+               debug="true">
+            <classpath>
+                <pathelement location="${classes.dir}"/>
+                <fileset dir="${lib.dir}" includes="*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+    
+    <!-- Exécution des tests JUnit -->
+    <target name="test" depends="compile-tests">
+        <junit printsummary="yes" haltonfailure="yes" fork="true">
+            <classpath>
+                <pathelement location="${classes.dir}"/>
+                <fileset dir="${lib.dir}" includes="*.jar"/>
+            </classpath>
+            <batchtest todir="${test.report.dir}">
+                <fileset dir="${classes.dir}">
+                    <include name="**/*Test.class"/>
+                </fileset>
+            </batchtest>
+            <formatter type="plain"/>
+            <formatter type="xml"/>
+        </junit>
+    </target>
+    
+    <!-- Création du JAR -->
+    <target name="jar" depends="compile">
+        <jar destfile="${jar.dir}/${jar.name}"
+             basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="org.centrale.jeupendu.Jeu"/>
+            </manifest>
+        </jar>
+    </target>
+    
+   
+    <!-- Création de la Javadoc -->
+    <target name="javadoc">
+        <javadoc sourcepath="${src.dir}"
+                    destdir="${javadoc.dir}" >
+          <fileset dir="${src.dir}" defaultexcludes="yes">
+            <include name="**" />
+          </fileset>
+        </javadoc>
+    </target>
+    
+    <!-- Target global : compilation, tests, jar et javadoc -->
+    <target name="all" depends="compile,compile-tests,test,jar,javadoc">
+        <echo message="Build terminé : JAR, Javadoc et tests exécutés !"/>
+    </target>
+    
+    
+</project>
