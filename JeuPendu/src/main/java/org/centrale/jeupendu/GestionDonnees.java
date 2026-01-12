@@ -18,6 +18,8 @@ import java.util.Random;
  */
 public class GestionDonnees {
     
+    private static Random random = new Random();
+    
      /**
      * Lit un fichier texte et retourne la liste de mots (1 mot par ligne)
      *
@@ -28,7 +30,7 @@ public class GestionDonnees {
         String cheminFichier = "src/main/data/dico.txt";
         Path path = Path.of(cheminFichier);
         
-        Random random = new Random();
+        
 
         List<String> mots = Files.readAllLines(path);
         int index = random.nextInt(mots.size());

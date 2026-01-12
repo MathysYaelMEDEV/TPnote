@@ -19,6 +19,12 @@ public class JeuPendu {
     private List<String> letters;
     private int state;// 0 = en cours, 1 = victoire du joueur qui cherche, 2 = défaite
     
+    /**
+     * Constructeur du jeu
+     * 
+     * @param maxError le nombre maximal d'erreur
+     * @param secretWord le mot secret
+     */
     public JeuPendu(int maxError, String secretWord) {
         this.maxError = maxError;
         this.errors = 0;
@@ -31,6 +37,11 @@ public class JeuPendu {
         this.state = 0;
     }
     
+    /**
+     * Teste si le mot a été trouvé
+     * 
+     * @return booleen indiquant si le mot a été trouvé
+     */
     public boolean wordFound(){
         for(String s : this.currentWord){
             if (s == null){
@@ -39,6 +50,12 @@ public class JeuPendu {
         }
         return true;
     }
+    
+    /**
+     * Teste si la partie est finie
+     * 
+     * @return booleen indiquant si la partie est finie
+     */
     
     public boolean isOver(){
         
@@ -56,6 +73,12 @@ public class JeuPendu {
         
     }
     
+    /**
+     * Teste la lettre l pour le mot secret
+     * Met à jour les lettres déjà essayées, le mot courant et les erreurs
+     * 
+     * @param l 
+     */
     public void tryLetter(String l){
         boolean found = false;
         for(int i = 0; i < secretWord.length(); i++){
@@ -72,51 +95,99 @@ public class JeuPendu {
         
         letters.add(l);
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getMaxError() {
         return maxError;
     }
-
+    
+    /**
+     * 
+     * @param maxError 
+     */
     public void setMaxError(int maxError) {
         this.maxError = maxError;
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     public int getErrors() {
         return errors;
     }
 
+    /**
+     * 
+     * @param errors 
+     */
     public void setErrors(int errors) {
         this.errors = errors;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String getSecretWord() {
         return secretWord;
     }
 
+    /**
+     * 
+     * @param secretWord 
+     */
     public void setSecretWord(String secretWord) {
         this.secretWord = secretWord;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<String> getCurrentWord() {
         return currentWord;
     }
 
+    /**
+     * 
+     * @param currentWord 
+     */
     public void setCurrentWord(List<String> currentWord) {
         this.currentWord = currentWord;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<String> getLetters() {
         return letters;
     }
 
+    /**
+     * 
+     * @param letters 
+     */
     public void setLetters(List<String> letters) {
         this.letters = letters;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int getState() {
         return state;
     }
 
+    /**
+     * 
+     * @param state 
+     */
     public void setState(int state) {
         this.state = state;
     }
