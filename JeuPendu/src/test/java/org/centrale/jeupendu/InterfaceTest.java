@@ -145,7 +145,7 @@ class InterfaceTest {
 
         int maxErreur = Interface.initMaxErreur();
 
-        assertNotNull(maxErreur);
+        assertTrue(maxErreur > 0);
     }
     
     /**
