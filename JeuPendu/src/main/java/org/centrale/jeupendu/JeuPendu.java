@@ -66,7 +66,7 @@ public class JeuPendu {
             }
         }
             
-        if(found){
+        if(!found){
             errors++;
             letters.add(l);
         } 
