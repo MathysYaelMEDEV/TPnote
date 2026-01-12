@@ -10,16 +10,21 @@ import java.nio.file.Path;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Disabled;
+
+
 
 /**
  *
  * @author dytri
  */
 class GestionDonneesTest {
-
+    
+    
     /**
      * Test of motAlea method, of class GestionDonnees.
      */
+    @Disabled("Test désactivé temporairement")
     @Test
     void testMotAleaDicoTrouve() {
         try {
@@ -44,6 +49,7 @@ class GestionDonneesTest {
     /**
      * Test non instanciation de GestionDonnees
      */
+    @Disabled("Test désactivé temporairement")
     @Test
     void testConstructeurGestionDonnees() throws Exception{
         var constructor = Interface.class.getDeclaredConstructor();

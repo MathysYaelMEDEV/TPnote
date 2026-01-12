@@ -1,5 +1,5 @@
 Testsuite: org.centrale.jeupendu.GestionDonneesTest
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0,135 sec
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0,12 sec
 
 Testcase: initializationError took 0,002 sec
 	Caused an ERROR
