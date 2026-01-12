@@ -120,8 +120,10 @@ public class Interface {
      * @param listeLettres 
      */
     public static void afficheListeLettre(List<String> listeLettres){
-        Collections.sort(listeLettres);
-        logger.info(listeLettres.toString());
+        if(listeLettres != null){
+            Collections.sort(listeLettres);
+            logger.info(listeLettres.toString());
+        }
     }
     
     public static String demandeLettre(){

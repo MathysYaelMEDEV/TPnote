@@ -8,9 +8,10 @@ package org.centrale.jeupendu;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.SecureRandom;
 import java.util.List;
-import java.util.Random;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -18,7 +19,9 @@ import java.util.Random;
  */
 public class GestionDonnees {
     
-    private static final Random random = new Random();
+    private static final SecureRandom random = new SecureRandom();
+    
+    private static final Logger logger = LoggerFactory.getLogger(Interface.class);
     
     private GestionDonnees() {
         throw new IllegalStateException("Utility class");
@@ -32,13 +35,16 @@ public class GestionDonnees {
      */
     public static String motAlea() throws IOException {
         String cheminFichier = "src/main/data/dico.txt";
-        Path path = Path.of(cheminFichier);
-        
-        
+        try{
+            Path path = Path.of(cheminFichier);
 
-        List<String> mots = Files.readAllLines(path);
-        int index = random.nextInt(mots.size());
+            List<String> mots = Files.readAllLines(path);
+            int index = random.nextInt(mots.size());
         
-        return mots.get(index);
+            return mots.get(index);
+        } catch (IOException e){
+            logger.info("Vérifiez le dictionnaire ou jouer à deux joueurs");
+        }
+        return null;
     }
 }
